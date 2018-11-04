@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,8 +29,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/information/{lang}", name="homepage_show_info")
      */
-    public function showInfo($lang)
+    public function showInfo($lang, LoggerInterface $logger)
     {
+        $logger->info('loool');
         return $this->render('homepage/show_info.html.twig', [
             'lang'=>$lang
         ]);
