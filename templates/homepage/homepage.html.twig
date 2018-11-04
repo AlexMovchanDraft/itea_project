@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div style="margin-top: 15px;" class="container">
+        <h1 class="text-center">About me</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-3" style="padding: 0;">
+                <img id="ava" class="ava thumbnail" src={{ asset('images/ava.jpg') }} alt="my avatar" />
+                <button style="width: 100%; margin:5px 0;" class="btn btn-info">+38 (063) 02 01 396</button>
+                <button style="width: 100%; margin:5px 0;" class="btn btn-info">olexandr.movchan@gmail.com</button>
+                <a href="https://www.facebook.com/alexmovchan11" target="_blank" style="color: white; text-decoration: none;">
+                    <button style="width: 100%; margin:5px 0;" class="btn btn-info">Facebook</button>
+                </a>
+                <a href="https://www.linkedin.com/alexmovchan/" target="_blank" style="color: white; text-decoration: none;">
+                    <button style="width: 100%; margin:5px 0;" class="btn btn-info">Linked In</button>
+                </a>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-7 about-me jumbotron">
+                <h2 class="text-center">Hi! My name is Alexandr.</h2>
+                <hr>
+                <p>
+                    <p>I'm 26. I finished <a href="http://nau.edu.ua/">national Aviation university</a> in 2014. Then I worked as an installation engineer for satellite TV and air conditioners. In 2016, I went to the programming courses, where I studied 6 months in the field of Front End. </p>
+                    <p>My hobby is hockey. I read books and listen to music in free time. I like spend time in nature and travel.</p>
+                </p>
+                <h2 class="text-center">
+                    Work experience
+                </h2>
+                <hr>
+                <ul>
+                    <li>
+                        <b>2014</b> - Installation engineer for satellite TV and air conditioners
+                    </li>
+                    <li>
+                        <b>2016</b> - Specialist in repairing washing machines
+                    </li>
+                    <li>
+                        <b>2017</b> - Front End Developer - <a target="_blank" href="http://www.relatedata.com/">Relate Data</a>
+                    </li>
+                    <li>
+                        <b>2017</b> - Front End Developer (AngularJS) - <a target="_blank" href="https://www.bpotel.com/">BPO telecom</a>
+                    </li>
+                    <li>
+                        <b>2018</b> - Front End Developer (React) - <a target="_blank" href="https://www.eldorado.ua/">Eldorado UA</a>
+                    </li>
+                </ul>
+                <h2>
+                    My skills
+                </h2>
+                <ul>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'js'}) }}>
+                            JS
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'react'}) }}>
+                            React
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'react'}) }}>
+                            Redux
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'angular 1.6'}) }}>
+                            Angular (1.6)
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'php'}) }}>
+                            PHP
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'mysql'}) }}>
+                            MYSQL
+                        </a>
+                    </li>
+                    <li>
+                        <a href={{ path('homepage_show_info', {lang: 'wordpress'}) }}>
+                            Wordpress
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
