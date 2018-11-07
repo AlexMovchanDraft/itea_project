@@ -22,7 +22,7 @@ class Link
     private $hashed_link;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=400)
      */
     private $original_link;
 

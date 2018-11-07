@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Link;
@@ -18,21 +20,41 @@ class LinkController extends AbstractController
     }
 
     /**
-     * @Route("/link/add_link/{addedLink}", name="add_link")
+     * @Route("/link/add_link")
+     * @param Request $request
+     * @return JsonResponse|Response
      */
-    public function addLink($addedLink)
+    public function ajaxAction(Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        $originalLink = $request->request->get('original');
+        $encodedLink = $request->request->get('encoded');
 
-        $link = new Link();
-        $link->setHashedLink('##3213#2');
-        $link->setOriginalLink($addedLink);
 
-        $entityManager->persist($link);
+        $repository = $this->getDoctrine()->getRepository(Link::class);
 
-        $entityManager->flush();
+        if (isset($originalLink) && isset($encodedLink)) {
+            $entityManager = $this->getDoctrine()->getManager();
 
-        return new Response('Added to database! Thanx! Use this to open original - ' . $link->getHashedLink());
+            $isLinkExistInDb = $repository->findOneBy(["original_link" => $originalLink]);
+
+//            return new JsonResponse($isLinkExistInDb, 400);
+            if (!isSet($isLinkExistInDb)) {
+                $link = new Link();
+                $link->setHashedLink($encodedLink);
+                $link->setOriginalLink($originalLink);
+
+                $entityManager->persist($link);
+                $entityManager->flush();
+
+                return new JsonResponse(array('encoded'=>$encodedLink, 'original'=>$originalLink), 200);
+
+            } else {
+                return new JsonResponse('Link is exist', 400);
+            }
+
+        } else {
+            return new Response('Fields is empty', 400);
+        }
     }
 
     /**
@@ -50,7 +72,7 @@ class LinkController extends AbstractController
            );
         }
 
-        return new Response('Check out this : ' .$findedLink->getOriginalLink());
+        return $this->redirect($findedLink->getOriginalLink());
     }
 
 }
