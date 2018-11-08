@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center">Resume constructor</h2>
+        <form action="">
+            {#about me#}
+            <div class="input-group block">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">About me</span>
+                </div>
+                    <textarea name="about_me" class="form-control" aria-label="about me">
+                        {{ biography }}
+                    </textarea>
+            </div>
+
+            {#Work experience#}
+            <div class="input-group block">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Work experience</span>
+                </div>
+                {% for key in workExperience %}
+                    <input type="datetime" name="from{{ key.getCompany }}" class="form-control" value={{ key.getDateStart|date("m/d/Y") }} />
+                    <input type="datetime" aria-label="to" placeholder="to{{ key.getCompany }}" class="form-control" value={{ key.getDateEnd|date("m/d/Y") }} />
+                    <input type="text" aria-label="Company" placeholder="Company" class="form-control" value={{ key.getCompany }} />
+                {% endfor %}
+            </div>
+
+            {#My skills#}
+            {% for key in skills %}
+                <div class="input-group block">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Skill name</span>
+                    </div>
+                    <input type="text" aria-label="" placeholder="Company" class="form-control" value={{ key.skill }}>
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+
+{% endblock %}

@@ -4,3 +4,7 @@
     width: 100%;
     cursor: pointer;
 }
+
+.block {
+    margin: 20px 0;
+}
