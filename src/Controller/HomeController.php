@@ -32,6 +32,7 @@ class HomeController extends AbstractController
     {
         return $this->render('homepage/show_info.html.twig', [
             'lang'=>$lang
+//            'description'=>$description
         ]);
     }
 }

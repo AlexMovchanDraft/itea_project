@@ -34,7 +34,7 @@ let convertLink = () => {
         },
 
         error : function(error, text, lol) {
-            console.log(error.responseJSON);
+            alert(error.responseJSON);
             // alert(`Ajax request failed. ${textStatus} ${errorThrown}`);
         }
     });

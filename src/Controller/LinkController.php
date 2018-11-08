@@ -12,12 +12,13 @@ use App\Entity\Link;
 class LinkController extends AbstractController
 {
     /**
-     * @Route("/link", name="link")
+     * @Route("link-coder", name="app_link_coder")
      */
-    public function index()
+    public function linkCoder()
     {
-        return $this->render('link/link.html.twig', []);
+        return $this->render('link_coder/link_coder.html.twig');
     }
+
 
     /**
      * @Route("/link/add_link")
@@ -37,7 +38,6 @@ class LinkController extends AbstractController
 
             $isLinkExistInDb = $repository->findOneBy(["original_link" => $originalLink]);
 
-//            return new JsonResponse($isLinkExistInDb, 400);
             if (!isSet($isLinkExistInDb)) {
                 $link = new Link();
                 $link->setHashedLink($encodedLink);
@@ -49,7 +49,7 @@ class LinkController extends AbstractController
                 return new JsonResponse(array('encoded'=>$encodedLink, 'original'=>$originalLink), 200);
 
             } else {
-                return new JsonResponse('Link is exist', 400);
+                return new JsonResponse('Link is exist - http://127.0.0.1:8000/link/' . $isLinkExistInDb->getHashedLink(), 400);
             }
 
         } else {
